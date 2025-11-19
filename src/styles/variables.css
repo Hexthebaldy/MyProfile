@@ -1,0 +1,56 @@
+:root {
+  /* Colors - Gentle Cream Theme */
+  --color-bg-primary: #fdfbf7;
+  /* Warm off-white/cream */
+  --color-bg-secondary: #f5f5f0;
+  /* Slightly darker paper tone */
+  --color-bg-glass: rgba(253, 251, 247, 0.85);
+
+  --color-text-primary: #2c2c2c;
+  /* Ink Black */
+  --color-text-secondary: #5a5a5a;
+  /* Dark Grey */
+  --color-text-accent: #8c7b75;
+  /* Muted Earth Tone / Taupe */
+
+  --color-border: rgba(44, 44, 44, 0.1);
+  --color-border-hover: rgba(44, 44, 44, 0.3);
+
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-signature: 'Dancing Script', cursive;
+  /* For signature */
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3.5rem;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* Animation */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+  --shadow-modal: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
