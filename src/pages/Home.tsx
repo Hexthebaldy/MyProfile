@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { posts, type Post } from '../data/posts';
+import { motion } from 'framer-motion';
 import Avatar from '../components/Avatar';
 import Sidebar from '../components/Sidebar';
 import Modal from '../components/Modal';
@@ -7,6 +8,7 @@ import Modal from '../components/Modal';
 const Home: React.FC = () => {
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
     const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+    const [selectedLayoutId, setSelectedLayoutId] = useState<string | null>(null);
 
     // Get unique tags
     const allTags = useMemo(() => {
@@ -53,17 +55,27 @@ const Home: React.FC = () => {
                     maxWidth: '1200px'
                 }}>
                     {recentPosts.map(post => (
-                        <article key={post.id}
-                            onClick={() => setSelectedPost(post)}
+                        <motion.article key={post.id}
+                            layoutId={`recent-${post.id}`}
+                            onClick={() => {
+                                setSelectedPost(post);
+                                setSelectedLayoutId(`recent-${post.id}`);
+                            }}
                             className="glass-panel"
                             style={{
                                 cursor: 'pointer',
                                 padding: 'var(--space-6)',
-                                transition: 'transform var(--transition-fast)',
-                                textAlign: 'left'
+                                textAlign: 'left',
+                                backgroundColor: 'var(--color-bg-primary)', // Match modal bg
+                                borderRadius: '12px', // Explicit border radius
+                                willChange: 'transform' // Optimize animation
                             }}
-                            onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-4px)'}
-                            onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+                            whileHover={{
+                                scale: 1.02,
+                                y: -4,
+                                transition: { duration: 0.2 }
+                            }}
+                            whileTap={{ scale: 0.98 }}
                         >
                             <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-accent)', textTransform: 'uppercase', letterSpacing: '1px', display: 'block', marginBottom: 'var(--space-2)' }}>
                                 {post.date}
@@ -72,7 +84,7 @@ const Home: React.FC = () => {
                             <p style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-sm)', lineHeight: 1.6 }}>
                                 {post.excerpt.substring(0, 80)}...
                             </p>
-                        </article>
+                        </motion.article>
                     ))}
                 </div>
 
@@ -124,17 +136,27 @@ const Home: React.FC = () => {
                         <div style={{ flex: 1 }}>
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 'var(--space-8)' }}>
                                 {filteredPosts.map(post => (
-                                    <div key={post.id}
+                                    <motion.div key={post.id}
+                                        layoutId={`library-${post.id}`}
                                         className="glass-panel"
-                                        onClick={() => setSelectedPost(post)}
+                                        onClick={() => {
+                                            setSelectedPost(post);
+                                            setSelectedLayoutId(`library-${post.id}`);
+                                        }}
                                         style={{
                                             padding: 'var(--space-6)',
                                             cursor: 'pointer',
-                                            transition: 'transform var(--transition-fast)',
-                                            boxShadow: 'var(--shadow-sm)'
+                                            boxShadow: 'var(--shadow-sm)',
+                                            backgroundColor: 'var(--color-bg-primary)', // Match modal bg
+                                            borderRadius: '12px',
+                                            willChange: 'transform' // Optimize animation
                                         }}
-                                        onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-4px)'}
-                                        onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+                                        whileHover={{
+                                            scale: 1.02,
+                                            y: -4,
+                                            transition: { duration: 0.2 }
+                                        }}
+                                        whileTap={{ scale: 0.98 }}
                                     >
                                         <h4 style={{ fontSize: 'var(--text-lg)', marginBottom: 'var(--space-2)' }}>{post.title}</h4>
                                         <div style={{ display: 'flex', gap: 'var(--space-2)', marginBottom: 'var(--space-4)' }}>
@@ -147,7 +169,7 @@ const Home: React.FC = () => {
                                         <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)' }}>
                                             {post.excerpt}
                                         </p>
-                                    </div>
+                                    </motion.div>
                                 ))}
                             </div>
                         </div>
@@ -156,7 +178,11 @@ const Home: React.FC = () => {
             </section>
 
             {/* Post Modal */}
-            <Modal isOpen={!!selectedPost} onClose={() => setSelectedPost(null)}>
+            <Modal
+                isOpen={!!selectedPost}
+                onClose={() => setSelectedPost(null)}
+                layoutId={selectedLayoutId}
+            >
                 {selectedPost && (
                     <article>
                         <header style={{ textAlign: 'center', marginBottom: 'var(--space-8)' }}>
