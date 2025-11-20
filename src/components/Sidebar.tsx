@@ -18,7 +18,11 @@ const Sidebar: React.FC<SidebarProps> = ({ tags, selectedTag, onSelectTag }) => 
             }}>
                 Filter by Topic
             </h3>
-            <ul style={{ listStyle: 'none' }}>
+            <ul style={{
+                listStyle: 'none',
+                borderRight: '1px solid var(--color-border)',
+                paddingRight: 'var(--space-4)'
+            }}>
                 <li style={{ marginBottom: 'var(--space-2)' }}>
                     <button
                         onClick={() => onSelectTag(null)}
