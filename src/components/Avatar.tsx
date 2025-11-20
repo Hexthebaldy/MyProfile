@@ -15,7 +15,7 @@ const Avatar: React.FC = () => {
                 backgroundPosition: 'center',
                 boxShadow: 'var(--shadow-md)',
             }} />
-            <h1 style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-2)' }}>Yang Wenhao</h1>
+            <h1 style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-2)' }}>wojack</h1>
             <p style={{
                 fontFamily: 'var(--font-signature)',
                 fontSize: 'var(--text-2xl)',
