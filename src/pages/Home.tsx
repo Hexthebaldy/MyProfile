@@ -114,7 +114,6 @@ const Home: React.FC = () => {
                 height: '100vh', // Fixed height to fit viewport
                 scrollSnapAlign: 'start',
                 paddingTop: 'var(--space-8)', // Reduced top padding
-                paddingBottom: 'var(--space-8)',
                 display: 'flex',
                 flexDirection: 'column',
                 overflow: 'hidden' // Prevent section from expanding beyond viewport
@@ -154,7 +153,7 @@ const Home: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.2 }}
                             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-                            style={{ flex: 1, overflowY: 'auto', paddingBottom: 'var(--space-8)', paddingRight: 'var(--space-2)' }}
+                            style={{ flex: 1, overflowY: 'auto', paddingBottom: 'var(--space-24)', paddingRight: 'var(--space-2)' }}
                         >
                             <div className="library-grid">
                                 {filteredPosts.map(post => (
