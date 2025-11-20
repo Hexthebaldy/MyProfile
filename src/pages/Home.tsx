@@ -111,14 +111,15 @@ const Home: React.FC = () => {
             {/* Viewport 2: Library Section */}
             {/* Viewport 2: Library Section */}
             <section id="library-section" style={{
-                minHeight: '100vh',
+                height: '100vh', // Fixed height to fit viewport
                 scrollSnapAlign: 'start',
-                paddingTop: 'var(--space-16)',
-                paddingBottom: 'var(--space-16)',
+                paddingTop: 'var(--space-8)', // Reduced top padding
+                paddingBottom: 'var(--space-8)',
                 display: 'flex',
-                flexDirection: 'column'
+                flexDirection: 'column',
+                overflow: 'hidden' // Prevent section from expanding beyond viewport
             }}>
-                <div className="container" style={{ flex: 1 }}>
+                <div className="container" style={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -127,31 +128,33 @@ const Home: React.FC = () => {
                         style={{
                             textAlign: 'center',
                             fontSize: 'var(--text-xl)',
-                            marginBottom: 'var(--space-12)',
-                            color: 'var(--color-text-primary)'
+                            marginBottom: 'var(--space-8)', // Reduced margin
+                            marginTop: 'var(--space-4)',
+                            color: 'var(--color-text-primary)',
+                            flexShrink: 0 // Prevent header from shrinking
                         }}
                     >
                         Library
                     </motion.h2>
-                    <div style={{ display: 'flex', gap: 'var(--space-12)', flexDirection: 'row', flexWrap: 'wrap', height: '100%' }}>
-                        {/* Sidebar - Fades in from left */}
+                    <div style={{ display: 'flex', gap: 'var(--space-12)', flexDirection: 'row', flex: 1, overflow: 'hidden' }}>
+                        {/* Sidebar - Fixed */}
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                            style={{ flex: '0 0 200px' }}
+                            style={{ flex: '0 0 200px', overflowY: 'auto', paddingRight: 'var(--space-4)' }}
                         >
                             <Sidebar tags={allTags} selectedTag={selectedTag} onSelectTag={setSelectedTag} />
                         </motion.div>
 
-                        {/* Grid - Fades in from bottom */}
+                        {/* Grid - Scrollable */}
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.2 }}
                             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-                            style={{ flex: 1 }}
+                            style={{ flex: 1, overflowY: 'auto', paddingBottom: 'var(--space-8)', paddingRight: 'var(--space-2)' }}
                         >
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 'var(--space-8)' }}>
                                 {filteredPosts.map(post => (
