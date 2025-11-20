@@ -1,7 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+    activeSection?: 'home' | 'about' | 'projects';
+}
+
+const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
     const navStyle: React.CSSProperties = {
         padding: 'var(--space-6) 0',
         background: 'transparent',
@@ -26,15 +33,30 @@ const Navbar: React.FC = () => {
         fontSize: 'var(--text-xl)',
         color: 'var(--color-text-primary)',
         fontWeight: 'bold',
+        textDecoration: 'none'
     };
 
-    const linkStyle: React.CSSProperties = {
+    const getLinkStyle = (section: string): React.CSSProperties => ({
         marginLeft: 'var(--space-6)',
-        color: 'var(--color-text-secondary)',
+        color: activeSection === section ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
         fontSize: 'var(--text-sm)',
         textTransform: 'uppercase',
         letterSpacing: '1px',
-        fontWeight: 500,
+        fontWeight: activeSection === section ? 700 : 500,
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        transition: 'color 0.3s ease, font-weight 0.3s ease',
+        borderBottom: activeSection === section ? '2px solid var(--color-text-accent)' : '2px solid transparent',
+        paddingBottom: '4px'
+    });
+
+    const handleNavigation = (sectionId: string) => {
+        if (location.pathname === '/') {
+            document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            navigate('/', { state: { target: sectionId } });
+        }
     };
 
     return (
@@ -42,9 +64,9 @@ const Navbar: React.FC = () => {
             <div style={containerStyle}>
                 <Link to="/" style={logoStyle}>DoJournal</Link>
                 <div>
-                    <button onClick={() => document.getElementById('section-home')?.scrollIntoView({ behavior: 'smooth' })} style={{ ...linkStyle, background: 'none', border: 'none', cursor: 'pointer' }}>Meditations</button>
-                    <button onClick={() => document.getElementById('section-about')?.scrollIntoView({ behavior: 'smooth' })} style={{ ...linkStyle, background: 'none', border: 'none', cursor: 'pointer' }}>About</button>
-                    <button onClick={() => document.getElementById('section-projects')?.scrollIntoView({ behavior: 'smooth' })} style={{ ...linkStyle, background: 'none', border: 'none', cursor: 'pointer' }}>Projects</button>
+                    <button onClick={() => handleNavigation('section-home')} style={getLinkStyle('home')}>Meditations</button>
+                    <button onClick={() => handleNavigation('section-about')} style={getLinkStyle('about')}>About</button>
+                    <button onClick={() => handleNavigation('section-projects')} style={getLinkStyle('projects')}>Projects</button>
                 </div>
             </div>
         </nav>

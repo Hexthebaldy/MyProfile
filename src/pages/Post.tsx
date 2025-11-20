@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { posts } from '../data/posts';
+import Navbar from '../components/Navbar';
 
 const Post: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -9,6 +10,7 @@ const Post: React.FC = () => {
     if (!post) {
         return (
             <div className="container" style={{ paddingTop: 'var(--space-16)', textAlign: 'center' }}>
+                <Navbar />
                 <h2>Post not found</h2>
                 <Link to="/">Return Home</Link>
             </div>
@@ -17,6 +19,7 @@ const Post: React.FC = () => {
 
     return (
         <div className="container" style={{ paddingTop: 'var(--space-16)', maxWidth: '800px' }}>
+            <Navbar />
             <article>
                 <header style={{ marginBottom: 'var(--space-8)', textAlign: 'center' }}>
                     <span style={{ color: 'var(--color-text-accent)', fontSize: 'var(--text-sm)', textTransform: 'uppercase', letterSpacing: '1px' }}>
