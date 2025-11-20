@@ -42,9 +42,9 @@ const Navbar: React.FC = () => {
             <div style={containerStyle}>
                 <Link to="/" style={logoStyle}>DoJournal</Link>
                 <div>
-                    <Link to="/" style={linkStyle}>Meditations</Link>
-                    <Link to="/about" style={linkStyle}>About</Link>
-                    <Link to="/projects" style={linkStyle}>Projects</Link>
+                    <button onClick={() => document.getElementById('section-home')?.scrollIntoView({ behavior: 'smooth' })} style={{ ...linkStyle, background: 'none', border: 'none', cursor: 'pointer' }}>Meditations</button>
+                    <button onClick={() => document.getElementById('section-about')?.scrollIntoView({ behavior: 'smooth' })} style={{ ...linkStyle, background: 'none', border: 'none', cursor: 'pointer' }}>About</button>
+                    <button onClick={() => document.getElementById('section-projects')?.scrollIntoView({ behavior: 'smooth' })} style={{ ...linkStyle, background: 'none', border: 'none', cursor: 'pointer' }}>Projects</button>
                 </div>
             </div>
         </nav>
