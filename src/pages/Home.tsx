@@ -136,14 +136,14 @@ const Home: React.FC = () => {
                     >
                         Library
                     </motion.h2>
-                    <div style={{ display: 'flex', gap: 'var(--space-12)', flexDirection: 'row', flex: 1, overflow: 'hidden' }}>
-                        {/* Sidebar - Fixed */}
+                    <div className="library-container">
+                        {/* Sidebar */}
                         <motion.div
+                            className="sidebar-container"
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                            style={{ flex: '0 0 200px', overflowY: 'auto', paddingRight: 'var(--space-4)' }}
                         >
                             <Sidebar tags={allTags} selectedTag={selectedTag} onSelectTag={setSelectedTag} />
                         </motion.div>
@@ -156,7 +156,7 @@ const Home: React.FC = () => {
                             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
                             style={{ flex: 1, overflowY: 'auto', paddingBottom: 'var(--space-8)', paddingRight: 'var(--space-2)' }}
                         >
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 'var(--space-8)' }}>
+                            <div className="library-grid">
                                 {filteredPosts.map(post => (
                                     <motion.div key={post.id}
                                         layoutId={`library-${post.id}`}
