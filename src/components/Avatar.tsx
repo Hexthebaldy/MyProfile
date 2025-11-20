@@ -1,4 +1,5 @@
 import React from 'react';
+import avatarImage from '../assets/image.png';
 
 const Avatar: React.FC = () => {
     return (
@@ -7,9 +8,9 @@ const Avatar: React.FC = () => {
                 width: '120px',
                 height: '120px',
                 borderRadius: '50%',
-                backgroundColor: '#e0e0e0', // Placeholder grey
+                backgroundColor: '#e0e0e0',
                 margin: '0 auto var(--space-4)',
-                backgroundImage: 'url(https://via.placeholder.com/150)', // Replace with actual image
+                backgroundImage: `url(${avatarImage})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 boxShadow: 'var(--shadow-md)',
