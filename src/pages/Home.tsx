@@ -109,6 +109,7 @@ const Home: React.FC = () => {
             </section>
 
             {/* Viewport 2: Library Section */}
+            {/* Viewport 2: Library Section */}
             <section id="library-section" style={{
                 minHeight: '100vh',
                 scrollSnapAlign: 'start',
@@ -118,22 +119,40 @@ const Home: React.FC = () => {
                 flexDirection: 'column'
             }}>
                 <div className="container" style={{ flex: 1 }}>
-                    <h2 style={{
-                        textAlign: 'center',
-                        fontSize: 'var(--text-xl)',
-                        marginBottom: 'var(--space-12)',
-                        color: 'var(--color-text-primary)'
-                    }}>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.5 }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        style={{
+                            textAlign: 'center',
+                            fontSize: 'var(--text-xl)',
+                            marginBottom: 'var(--space-12)',
+                            color: 'var(--color-text-primary)'
+                        }}
+                    >
                         Library
-                    </h2>
+                    </motion.h2>
                     <div style={{ display: 'flex', gap: 'var(--space-12)', flexDirection: 'row', flexWrap: 'wrap', height: '100%' }}>
-                        {/* Sidebar */}
-                        <div style={{ flex: '0 0 200px' }}>
+                        {/* Sidebar - Fades in from left */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                            style={{ flex: '0 0 200px' }}
+                        >
                             <Sidebar tags={allTags} selectedTag={selectedTag} onSelectTag={setSelectedTag} />
-                        </div>
+                        </motion.div>
 
-                        {/* Grid */}
-                        <div style={{ flex: 1 }}>
+                        {/* Grid - Fades in from bottom */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+                            style={{ flex: 1 }}
+                        >
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 'var(--space-8)' }}>
                                 {filteredPosts.map(post => (
                                     <motion.div key={post.id}
@@ -157,6 +176,7 @@ const Home: React.FC = () => {
                                             transition: { duration: 0.2 }
                                         }}
                                         whileTap={{ scale: 0.98 }}
+                                    // Staggered entrance for items if needed, but container fade is cleaner for now
                                     >
                                         <h4 style={{ fontSize: 'var(--text-lg)', marginBottom: 'var(--space-2)' }}>{post.title}</h4>
                                         <div style={{ display: 'flex', gap: 'var(--space-2)', marginBottom: 'var(--space-4)' }}>
@@ -172,7 +192,7 @@ const Home: React.FC = () => {
                                     </motion.div>
                                 ))}
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
