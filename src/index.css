@@ -244,8 +244,8 @@ button {
     gap: var(--space-8);
     justify-content: center;
     width: max-content;
-    padding: 0;
-    /* Reset padding */
+    padding: 0 var(--space-6);
+    /* Add horizontal padding to prevent hover overflow */
   }
 
   .sidebar-container {
