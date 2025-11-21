@@ -27,7 +27,8 @@ const Projects: React.FC = () => {
         <div className="container" style={{ paddingTop: 'var(--space-16)', maxWidth: '1000px', minHeight: '80vh' }}>
             <motion.h1
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
                 style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-12)', textAlign: 'center' }}
             >
@@ -43,7 +44,8 @@ const Projects: React.FC = () => {
                         key={index}
                         className="glass-panel"
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         style={{
                             padding: 'var(--space-8)',
